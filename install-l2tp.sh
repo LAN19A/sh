@@ -45,10 +45,9 @@ conn L2TP-PSK
     left=%defaultroute
     leftprotoport=17/1701
     right=%any
-    rightprotoport=17/1701
-    ike=aes128-sha1-modp1024!
-    esp=aes128-sha1!
-    dpdaction=clear
+    rightprotoport=17/%any
+    ike=aes128-sha1-modp1024
+    esp=aes128-sha1
     auto=add
 EOF
 
