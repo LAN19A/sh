@@ -41,6 +41,7 @@ echo "检测到公网 IP: $PUBLIC_IP"
 cat > /etc/ipsec.conf <<EOF
 config setup
     uniqueids=no
+    charondebug="ike 2, knl 2, cfg 2, net 2, esp 2, dmn 2,  mgr 2"
 
 conn L2TP-PSK
     keyexchange=ikev1
@@ -50,8 +51,9 @@ conn L2TP-PSK
     leftprotoport=17/1701
     right=%any
     rightprotoport=17/%any
-    ike=aes128-sha1-modp1024
-    esp=aes128-sha1
+    ike=aes256-sha2_256-modp2048,aes128-sha2_256-modp2048,aes128-sha1-modp1024
+    esp=aes256-sha2_256,aes128-sha2_256,aes128-sha1
+    rekey=no
     auto=add
 EOF
 
