@@ -51,10 +51,14 @@ conn L2TP-PSK
     leftprotoport=17/1701
     right=%any
     rightprotoport=17/%any
-    ike=aes256-sha2_256-modp2048,aes128-sha2_256-modp2048,aes128-sha1-modp1024
+    dpddelay=30
+    dpdtimeout=150
+    ike=aes256-sha2_256-modp2048,aes128-sha2_256-modp2048,aes128-sha1-modp1024,aes128-sha2_256-modp3072
     esp=aes256-sha2_256,aes128-sha2_256,aes128-sha1
-    rekey=no
     auto=add
+    rekey=no
+    keylife=24h
+    ikelifetime=24h
 EOF
 
 cat > /etc/ipsec.secrets <<EOF
