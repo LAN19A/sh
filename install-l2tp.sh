@@ -34,6 +34,10 @@ sysctl --system
 
 echo "配置 IPsec..."
 
+# 自动获取公网 IP
+PUBLIC_IP=$(curl -s 4.ipw.cn)
+echo "检测到公网 IP: $PUBLIC_IP"
+
 cat > /etc/ipsec.conf <<EOF
 config setup
     uniqueids=no
@@ -42,7 +46,7 @@ conn L2TP-PSK
     keyexchange=ikev1
     authby=psk
     type=transport
-    left=%defaultroute
+    left=$PUBLIC_IP
     leftprotoport=17/1701
     right=%any
     rightprotoport=17/%any
